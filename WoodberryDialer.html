@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📞 Woodberry Strategic Solutions — Network Outreach Dialer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   WOODBERRY STRATEGIC SOLUTIONS — Network Outreach Dialer
+   Built for Rev. Leo Woodberry's consulting practice
+   New Alpha CDC · Kingdom Living Temple · Justice First Tour
+   =================================================================== */
+:root {
+  --forest: #1F3D2A;
+  --forest-deep: #14291C;
+  --moss: #2F5C3F;
+  --sage: #8FA68E;
+  --sage-light: #C8D4C5;
+  --amber: #C99A4F;
+  --amber-deep: #A87B36;
+  --coral: #D4724D;
+  --cream: #FAF6EE;
+  --paper: #F4EDDF;
+  --linen: #ECE3D0;
+  --ink: #1A1F1B;
+  --ink-soft: #4A524C;
+  --rule: #D9CFB8;
+  --shadow: rgba(31, 61, 42, 0.08);
+  --shadow-strong: rgba(20, 41, 28, 0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top right, rgba(201,154,79,0.08), transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(143,166,142,0.10), transparent 50%),
+    var(--cream);
+}
+
+h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+
+/* ===== HEADER ===== */
+.app-header {
+  background: var(--forest);
+  color: var(--cream);
+  padding: 1rem 1.5rem;
+  border-bottom: 3px solid var(--amber);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 12px var(--shadow-strong);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+}
+.brand-name { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; letter-spacing: 0.01em; }
+.brand-sub { font-size: 0.72rem; opacity: 0.75; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.lead-fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 0.6rem;
+  flex: 1;
+  min-width: 600px;
+}
+
+.lead-field { display: flex; flex-direction: column; }
+.lead-field label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.2rem; }
+.lead-field input {
+  background: rgba(250, 246, 238, 0.08);
+  border: 1px solid rgba(250, 246, 238, 0.2);
+  color: var(--cream);
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+.lead-field input:focus { outline: none; background: rgba(250, 246, 238, 0.15); border-color: var(--amber); }
+.lead-field input::placeholder { color: rgba(250, 246, 238, 0.4); }
+
+.header-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55rem 0.95rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--amber); color: var(--forest-deep); }
+.btn-primary:hover { background: var(--amber-deep); color: var(--cream); }
+.btn-ghost { background: rgba(250, 246, 238, 0.1); color: var(--cream); border: 1px solid rgba(250, 246, 238, 0.2); }
+.btn-ghost:hover { background: rgba(250, 246, 238, 0.2); }
+.btn-outline { background: transparent; color: var(--forest); border: 1.5px solid var(--forest); }
+.btn-outline:hover { background: var(--forest); color: var(--cream); }
+.btn-sm { padding: 0.4rem 0.7rem; font-size: 0.78rem; }
+
+/* ===== STATUS BAR ===== */
+.status-bar {
+  background: var(--paper);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.timer-block { display: flex; align-items: center; gap: 0.5rem; }
+.timer-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.timer-display {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--forest);
+  min-width: 60px;
+}
+
+.call-type-toggle { display: flex; gap: 0.3rem; background: var(--linen); padding: 0.25rem; border-radius: 8px; }
+.call-type-toggle button {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.15s;
+}
+.call-type-toggle button.active { background: var(--forest); color: var(--cream); }
+
+/* ===== MAIN LAYOUT ===== */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.content-area { min-width: 0; }
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--rule);
+}
+
+.tab-btn {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  color: var(--ink-soft);
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.tab-btn:hover { background: var(--linen); border-color: var(--sage); }
+.tab-btn.active { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+.tab-btn .num {
+  background: rgba(255, 255, 255, 0.15);
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+.tab-btn:not(.active) .num { background: var(--sage-light); color: var(--forest); }
+
+/* ===== PANEL ===== */
+.panel {
+  background: var(--paper);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  display: none;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.panel.active { display: block; }
+
+.panel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.panel-header h2 { color: var(--forest); }
+.panel-tagline { font-size: 0.85rem; color: var(--ink-soft); font-style: italic; }
+
+/* ===== MINDSET CALLOUT ===== */
+.mindset {
+  background: linear-gradient(135deg, rgba(143,166,142,0.18), rgba(143,166,142,0.06));
+  border-left: 3px solid var(--moss);
+  padding: 0.85rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+.mindset strong { color: var(--forest); }
+
+/* ===== SCRIPT CARDS ===== */
+.script-section { margin-bottom: 1.5rem; }
+.script-section h3 {
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+}
+.script-section h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: var(--amber);
+  border-radius: 2px;
+}
+
+.script-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.95rem 1.1rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  transition: border-color 0.15s;
+}
+.script-card:hover { border-color: var(--sage); }
+
+.script-tag {
+  display: inline-block;
+  background: var(--forest);
+  color: var(--cream);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.script-tag.amber { background: var(--amber-deep); color: var(--cream); }
+.script-tag.coral { background: var(--coral); color: var(--cream); }
+.script-tag.sage { background: var(--moss); color: var(--cream); }
+
+.script-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+}
+.script-text em { color: var(--moss); font-style: italic; }
+.script-text strong { color: var(--forest); }
+
+.script-coach {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--amber);
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  background: var(--linen);
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.copy-btn:hover { background: var(--amber); color: var(--forest-deep); border-color: var(--amber); }
+.copy-btn.copied { background: var(--moss); color: var(--cream); border-color: var(--moss); }
+
+/* ===== BRANCH CHOICES ===== */
+.branch-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.6rem;
+  margin: 0.85rem 0 1.25rem;
+}
+.branch-card {
+  background: var(--cream);
+  border: 1.5px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.branch-card:hover { border-color: var(--moss); background: var(--linen); transform: translateY(-1px); }
+.branch-card .b-title { font-weight: 700; color: var(--forest); margin-bottom: 0.3rem; font-size: 0.95rem; }
+.branch-card .b-desc { font-size: 0.82rem; color: var(--ink-soft); }
+
+/* ===== CHECKLIST ===== */
+.checklist { background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem; }
+.checklist-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.45rem 0; cursor: pointer; font-size: 0.92rem; }
+.checklist-item input[type="checkbox"] { width: 16px; height: 16px; margin-top: 0.2rem; accent-color: var(--moss); cursor: pointer; flex-shrink: 0; }
+.checklist-item label { cursor: pointer; flex: 1; }
+.checklist-progress { margin-top: 0.5rem; padding-top: 0.65rem; border-top: 1px dashed var(--rule); font-size: 0.78rem; color: var(--ink-soft); }
+
+/* ===== SIDEBAR ===== */
+.sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.side-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.side-card h4 {
+  color: var(--forest);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  margin-bottom: 0.65rem;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.session-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.stat-tile { background: var(--cream); border-radius: 8px; padding: 0.6rem 0.4rem; text-align: center; }
+.stat-num { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--forest); }
+.stat-label { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+
+.power-quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--ink);
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.power-quote:last-child { border-bottom: none; }
+
+.quick-jump { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+.qj-btn {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 0.55rem 0.5rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.qj-btn:hover { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+
+.lead-age-meter { text-align: center; padding: 0.4rem 0; }
+.lead-age-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: var(--moss); line-height: 1; }
+.lead-age-label { font-size: 0.7rem; color: var(--ink-soft); margin-top: 0.2rem; }
+.lead-age-guidance { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--rule); line-height: 1.4; }
+
+/* CREDENTIAL BADGES */
+.cred-list { font-size: 0.83rem; line-height: 1.5; }
+.cred-list li { padding: 0.3rem 0; border-bottom: 1px dashed var(--rule); list-style: none; }
+.cred-list li:last-child { border-bottom: none; }
+.cred-list strong { color: var(--forest); }
+
+/* ===== OBJECTION ACCORDION ===== */
+.objection { background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; margin-bottom: 0.5rem; overflow: hidden; }
+.objection-q {
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  color: var(--forest);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.93rem;
+}
+.objection-q:hover { background: var(--linen); }
+.objection-q::after { content: '+'; font-size: 1.3rem; color: var(--amber-deep); transition: transform 0.2s; }
+.objection.open .objection-q::after { transform: rotate(45deg); }
+.objection-a { display: none; padding: 0 1rem 1rem; border-top: 1px dashed var(--rule); }
+.objection.open .objection-a { display: block; }
+.objection-a .script-text { padding-top: 0.75rem; }
+
+/* ===== SERVICES GRID ===== */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; }
+.service-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.95rem;
+  transition: all 0.2s;
+}
+.service-card:hover { border-color: var(--amber); box-shadow: 0 4px 12px var(--shadow); transform: translateY(-2px); }
+.service-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--forest);
+  color: var(--amber);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.service-card h4 { color: var(--forest); margin-bottom: 0.3rem; }
+.service-card p { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.5rem; }
+.service-card .ideal-for { font-size: 0.75rem; color: var(--moss); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ===== NOTES PANEL ===== */
+.outcome-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
+.outcome-pill {
+  background: var(--cream);
+  border: 1.5px solid var(--rule);
+  color: var(--ink);
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.outcome-pill:hover { border-color: var(--moss); }
+.outcome-pill.selected { background: var(--moss); color: var(--cream); border-color: var(--moss); }
+
+textarea.notes-input {
+  width: 100%;
+  min-height: 130px;
+  padding: 0.85rem;
+  font-family: inherit;
+  font-size: 0.93rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--cream);
+  resize: vertical;
+}
+textarea.notes-input:focus { outline: none; border-color: var(--moss); }
+
+.callback-row { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 0.5rem; margin: 0.75rem 0; }
+.callback-row input { padding: 0.55rem; border: 1px solid var(--rule); border-radius: 6px; font-family: inherit; background: var(--cream); }
+
+/* ===== MODAL ===== */
+.modal-bg { position: fixed; inset: 0; background: rgba(20, 41, 28, 0.55); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
+.modal-bg.open { display: flex; }
+.modal { background: var(--cream); border-radius: 12px; max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 1.5rem; border: 1px solid var(--rule); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule); }
+.modal-close { background: transparent; border: none; font-size: 1.4rem; cursor: pointer; color: var(--ink-soft); }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 0.85rem 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px var(--shadow-strong);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .lead-fields { min-width: 100%; grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .lead-fields { grid-template-columns: 1fr; }
+  .header-row { flex-direction: column; align-items: stretch; }
+  .tabs { gap: 0.3rem; }
+  .tab-btn { padding: 0.45rem 0.65rem; font-size: 0.75rem; }
+}
+
+/* ===== FORWARD-PATH HIGHLIGHT ===== */
+.next-step {
+  background: linear-gradient(90deg, rgba(201,154,79,0.15), transparent);
+  border-left: 3px solid var(--amber);
+  padding: 0.6rem 0.85rem;
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  border-radius: 0 6px 6px 0;
+}
+.next-step strong { color: var(--amber-deep); }
+
+/* ===== CREDENTIAL HIGHLIGHT ===== */
+.cred-highlight {
+  background: linear-gradient(135deg, rgba(201,154,79,0.12), rgba(143,166,142,0.08));
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+}
+.cred-highlight strong { color: var(--amber-deep); }
+
+/* ===== DIVIDER ===== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule), transparent);
+  margin: 1.5rem 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="app-header">
+  <div class="header-row">
+    <div class="brand">
+      <div class="brand-name">Woodberry Strategic Solutions</div>
+      <div class="brand-sub">Global Consulting · Network Outreach</div>
+    </div>
+
+    <div class="lead-fields">
+      <div class="lead-field">
+        <label>Organization</label>
+        <input type="text" id="orgName" placeholder="e.g., Pee Dee Land Trust">
+      </div>
+      <div class="lead-field">
+        <label>Contact Name</label>
+        <input type="text" id="contactName" placeholder="Executive Director">
+      </div>
+      <div class="lead-field">
+        <label>Phone</label>
+        <input type="tel" id="contactPhone" placeholder="(555) 555-5555">
+      </div>
+      <div class="lead-field">
+        <label>Last Touchpoint</label>
+        <input type="date" id="lastTouch">
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-primary" onclick="dialLead()">📞 Dial Org</button>
+      <button class="btn btn-ghost btn-sm" onclick="openModal('importModal')">📂 Import</button>
+      <button class="btn btn-ghost btn-sm" onclick="openModal('callbackModal')">📅 Callbacks <span id="callbackCount">0</span></button>
+      <button class="btn btn-ghost btn-sm" onclick="exportSession()">📊 Export</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== STATUS BAR ========== -->
+<div class="status-bar">
+  <div class="timer-block">
+    <span class="timer-label">Call Time</span>
+    <span class="timer-display" id="timerDisplay">0:00</span>
+    <button class="btn btn-outline btn-sm" onclick="toggleTimer()" id="timerBtn">Start</button>
+    <button class="btn btn-outline btn-sm" onclick="resetTimer()">Reset</button>
+  </div>
+
+  <div class="call-type-toggle">
+    <button class="active" onclick="setCallType(this, 'outbound')">📤 Outbound</button>
+    <button onclick="setCallType(this, 'inbound')">📥 Inbound</button>
+    <button onclick="setCallType(this, 'referral')">🤝 Referral</button>
+    <button onclick="setCallType(this, 'follow-up')">🔄 Follow-Up</button>
+  </div>
+
+  <div style="margin-left: auto; font-size: 0.82rem; color: var(--ink-soft);">
+    <span id="leadCounter">0 orgs in queue</span>
+  </div>
+</div>
+
+<!-- ========== MAIN ========== -->
+<div class="main-grid">
+
+<div class="content-area">
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab(this, 'tab-opening')"><span class="num">1</span> Opening</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-discovery')"><span class="num">2</span> Discovery</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-services')"><span class="num">3</span> Services</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-objections')"><span class="num">4</span> Objections</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-close')"><span class="num">5</span> Close</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-voicemail')"><span class="num">6</span> Voicemail</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-followup')"><span class="num">7</span> Follow-Up</button>
+  <button class="tab-btn" onclick="showTab(this, 'tab-notes')"><span class="num">8</span> Notes</button>
+</div>
+
+<!-- ============================================================
+     PANEL 1 — OPENING (Network Warm Outreach)
+     ============================================================ -->
+<div class="panel active" id="tab-opening">
+  <div class="panel-header">
+    <h2>🌿 Network Outreach Opening</h2>
+    <span class="panel-tagline">Warm calls to organizations connected through Rev. Woodberry's network</span>
+  </div>
+
+  <div class="cred-highlight">
+    <strong>📌 Why this call works:</strong> You are calling on behalf of <strong>Rev. Leo Woodberry</strong> — a 30+ year community organizer, pastor of Kingdom Living Temple, ED of New Alpha CDC, recipient of <em>President Biden's Lifetime Achievement Award</em>, lead organizer of the 10-state Justice First Tour, and advisor to Sierra Club's Ready for 100 Campaign. His name carries weight in this network. Lead with it.
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> This is not a cold call. The person you're calling either knows Rev. Woodberry directly, has worked alongside New Alpha CDC, or has been part of a coalition he's organized. Lead with <em>relationship</em>, place yourself within his world, and remember — your job in the first 30 seconds is to make them glad you called.
+  </div>
+
+  <div class="script-section">
+    <h3>Step 1 — Confirm the Right Person</h3>
+    <div class="script-card">
+      <span class="script-tag">SAY</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi, is this <strong>[Contact Name]</strong>? Wonderful — this is <strong>[Your Name]</strong> calling on behalf of <strong>Rev. Leo Woodberry</strong> and the team at <strong>Woodberry Strategic Solutions</strong>. Did I catch you at an okay moment, or is now not great?"
+      </div>
+      <div class="script-coach">✦ "Calling on behalf of Rev. Woodberry" is the magic phrase. It signals warm relationship, not cold sales. Always offer the out — Rev. Woodberry's name earns courtesy, not entitlement to their time.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Step 2 — Place Yourself in Their World</h3>
+    <div class="script-card">
+      <span class="script-tag amber">CONTEXT</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "The reason I'm reaching out — Rev. Woodberry has been doing community development and environmental justice work out of Florence, South Carolina for over 30 years through New Alpha CDC and Kingdom Living Temple, and <strong>[Org Name]</strong> has come up in his network through <em>[shared coalition / Justice First / Sierra Club / NEJAC / Green Faith / mutual contact]</em>. He asked me to personally reach out to organizations he respects to share what we've been building on the consulting side."
+      </div>
+      <div class="script-coach">✦ Have one specific connection point ready. "We saw you at Justice First's gathering last fall" is a thousand times stronger than vague generality.</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag sage">IF THEY ASK "REMIND ME WHO REV. WOODBERRY IS?"</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Of course — Rev. Leo Woodberry is the <strong>Executive Director of New Alpha Community Development Corporation</strong> in Florence, SC, and pastor of Kingdom Living Temple. He's been a leader in environmental and climate justice work for decades — founding member of the African American Environmental Justice Action Network back in 1994, lead organizer of the <em>Justice First Tour</em> across ten Southern states, advisor to the Sierra Club's <em>Ready for 100</em> Campaign, and a member of the EPA's National Environmental Justice Advisory Council. He recently received <strong>President Biden's Lifetime Achievement Award</strong> for his work."
+      </div>
+      <div class="script-coach">✦ Don't apologize for listing credentials — these earn the next 60 seconds. But say them as fact, not boast. Pace it like introducing a friend.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Step 3 — The Real Reason for the Call</h3>
+    <div class="script-card">
+      <span class="script-tag">SAY</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "So here's why we're reaching out specifically. Rev. Woodberry has been providing strategic counsel — <em>strategic planning, grant writing, capacity building, coalition organizing</em> — to organizations across the country for years, mostly through New Alpha and informal asks. <strong>Woodberry Strategic Solutions</strong> is the consulting firm we've now formalized to do that work at scale, with a team that includes folks like <em>Dr. Mustafa Santiago Ali</em>, formerly of the EPA's Office of Environmental Justice, and <em>Dr. Florence Anoruo</em> at SC State and Brookhaven National Lab. We wanted to make sure organizations already in Rev. Woodberry's network heard about it from us first."
+      </div>
+      <div class="script-coach">✦ "Heard about it first" = belonging language. The team mentions add credibility — you're not just a one-person shop.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Step 4 — Hand the Mic Back to Them</h3>
+    <div class="script-card">
+      <span class="script-tag amber">PIVOT QUESTION</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Before I tell you anything else — I'd actually rather hear from you first. <strong>What's been on your plate at [Org Name] lately?</strong> What's going well, and where are you feeling the most pressure?"
+      </div>
+      <div class="script-coach">✦ STOP TALKING after the question. Whatever they say first is what they care most about — that's where you'll anchor everything that follows.</div>
+    </div>
+
+    <div class="next-step">
+      <strong>➡ Next Step:</strong> Whatever they share, that's your bridge into <strong>Discovery</strong>. Don't pitch services yet — ask one or two follow-up questions to go deeper on what they just told you.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="script-section">
+    <h3>Branching: How Did You Find This Conversation?</h3>
+    <div class="branch-row">
+      <div class="branch-card" onclick="showTab(document.querySelectorAll('.tab-btn')[1], 'tab-discovery')">
+        <div class="b-title">😊 Engaged & Talking</div>
+        <div class="b-desc">They're sharing freely. Go deeper. → Discovery</div>
+      </div>
+      <div class="branch-card" onclick="showTab(document.querySelectorAll('.tab-btn')[2], 'tab-services')">
+        <div class="b-title">🎯 "What Do You All Do?"</div>
+        <div class="b-desc">They invited the pitch. → Services menu</div>
+      </div>
+      <div class="branch-card" onclick="showTab(document.querySelectorAll('.tab-btn')[3], 'tab-objections')">
+        <div class="b-title">🚧 Hesitant or Pushing Back</div>
+        <div class="b-desc">"Not the right time," "no budget" → Objections</div>
+      </div>
+      <div class="branch-card" onclick="showTab(document.querySelectorAll('.tab-btn')[5], 'tab-voicemail')">
+        <div class="b-title">📵 Got Voicemail</div>
+        <div class="b-desc">No live answer. → Voicemail script</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 2 — DISCOVERY
+     ============================================================ -->
+<div class="panel" id="tab-discovery">
+  <div class="panel-header">
+    <h2>🧭 Discovery — Listen for the Real Need</h2>
+    <span class="panel-tagline">Curiosity over pitching. Their answers shape your recommendation.</span>
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> The biggest mistake on a network outreach call is jumping into services too quickly. You earn the right to recommend by demonstrating you <em>understand</em> their world first. Aim for 70% listening, 30% talking in this section.
+  </div>
+
+  <div class="script-section">
+    <h3>Frame the Conversation</h3>
+    <div class="script-card">
+      <span class="script-tag">SAY</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "I want to be respectful of your time, so let me ask just a handful of questions that'll help me figure out if there's actually a good fit here — or if I'm better off pointing you somewhere else. Either outcome is fine with me."
+      </div>
+      <div class="script-coach">✦ "Or pointing you somewhere else" = removes pressure. Builds enormous credibility. Most consultants won't say this.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Discovery Questions — Ask 3–5, Not All</h3>
+
+    <div class="script-card">
+      <span class="script-tag amber">MISSION & PROGRAMS</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Tell me a little about where <strong>[Org Name]</strong> is right now. What's the work look like this year compared to last year — growing, holding steady, evolving?"</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">FUNDING HEALTH</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"On the funding side — are you mostly grant-funded, individual donor-driven, government contracts, earned revenue, or a mix? And how is that mix sitting with you right now? With everything happening around federal funding, a lot of organizations are reassessing."</div>
+      <div class="script-coach">✦ Reference the federal funding climate when relevant — many orgs in this network are nervous about USDA/EPA/DOE shifts.</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">COMMUNITY & IMPACT</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"How would you describe the community you serve right now? Are you reaching the folks you want to be reaching, or is there a gap between the mission on paper and the impact on the ground?"</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">BOARD & GOVERNANCE</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"How would you describe your board right now? Are they engaged where you need them, or is that one of those 'always working on it' areas?"</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">STAFF CAPACITY</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"And on the staffing side — does it feel like you have the team and capacity to do what you're being asked to do? Or are folks stretched?"</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">COALITION & PARTNERSHIPS</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Who else are you working with on this? Are you part of any coalitions or collaboratives that are giving you leverage — or do you feel like you're carrying it alone?"</div>
+      <div class="script-coach">✦ This is a Rev. Woodberry signature question. Coalition-building is one of his strongest practice areas.</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">STRATEGIC HORIZON</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"When you look out 12 to 24 months — what's the thing that, if it goes well, makes everything else easier? And what's the thing that, if it doesn't get solved, will keep you up at night?"</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag coral">⭐ THE BRIDGE QUESTION</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"If we could wave a magic wand and have one thing solved or strengthened at <strong>[Org Name]</strong> by this time next year — what would it be?"</div>
+      <div class="script-coach">✦ Their answer is your entire pitch. Whatever they say, that's the service you lead with.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Reflect Back Before Moving On</h3>
+    <div class="script-card">
+      <span class="script-tag sage">REFLECT</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"So what I'm hearing — and stop me if I'm off — is that <em>[summarize their top 1-2 challenges in their own words]</em>. Did I get that right?"</div>
+      <div class="script-coach">✦ Mirroring their words back proves you listened. This single move builds more trust than any credentials slide.</div>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h4 style="margin-bottom: 0.5rem;">Discovery Checklist</h4>
+    <div class="checklist-item"><input type="checkbox" id="dc1" onchange="updateDiscoveryProgress()"><label for="dc1">Programs / mission scope today</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc2" onchange="updateDiscoveryProgress()"><label for="dc2">Funding mix and pressure points</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc3" onchange="updateDiscoveryProgress()"><label for="dc3">Community served & impact gaps</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc4" onchange="updateDiscoveryProgress()"><label for="dc4">Board engagement state</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc5" onchange="updateDiscoveryProgress()"><label for="dc5">Staff capacity & role gaps</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc6" onchange="updateDiscoveryProgress()"><label for="dc6">Coalition / partnership landscape</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc7" onchange="updateDiscoveryProgress()"><label for="dc7">12–24 month strategic priorities</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc8" onchange="updateDiscoveryProgress()"><label for="dc8">Magic-wand priority identified</label></div>
+    <div class="checklist-item"><input type="checkbox" id="dc9" onchange="updateDiscoveryProgress()"><label for="dc9">Decision-makers / who else is involved</label></div>
+    <div class="checklist-progress" id="discoveryProgress">0 / 9 covered</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 3 — SERVICES (matched to actual WSS service menu)
+     ============================================================ -->
+<div class="panel" id="tab-services">
+  <div class="panel-header">
+    <h2>🎯 Services Menu — Woodberry Strategic Solutions</h2>
+    <span class="panel-tagline">Lead with the one service that matches what they just told you</span>
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> Don't dump the full menu. Pick <em>one</em> primary recommendation based on Discovery, mention <em>one</em> related service as context, and leave the rest for the follow-up call. The introductory consultation is the front door — almost every conversation should land there.
+  </div>
+
+  <div class="script-section">
+    <h3>Bridge from Discovery to Recommendation</h3>
+    <div class="script-card">
+      <span class="script-tag">TRANSITION</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"So based on what you just shared — especially the piece about <em>[their #1 stated challenge]</em> — let me tell you about the area where I think we could be most useful for <strong>[Org Name]</strong>."</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>The Front Door — Introductory Consultation</h3>
+    <div class="script-card">
+      <span class="script-tag amber">⭐ ALWAYS LEAD HERE</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "The easiest way to find out if there's a real fit is our <strong>one-hour introductory consultation</strong>. Rev. Woodberry or one of our senior consultants sits down with you — no obligation, no proposal pressure — and helps you clarify your goals, surface challenges, and walk out with two or three concrete strategies you can act on immediately. Even if we never work together beyond that hour, you leave with something useful. <strong>Would that be worth scheduling?</strong>"
+      </div>
+      <div class="script-coach">✦ This is the soft close that wins. Frame it as value-first, not a sales meeting.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Service Cards — Pick One to Reference</h3>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+        <h4>Introductory Consultation</h4>
+        <p>One-hour session to clarify goals, explore challenges, and walk away with tailored strategies you can act on.</p>
+        <div class="ideal-for">Ideal: every first conversation</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔬</div>
+        <h4>Research & Analysis</h4>
+        <p>Scientific and evidence-based analysis to inform decision-making, evaluate outcomes, and back up your case.</p>
+        <div class="ideal-for">Ideal: orgs needing data to defend programs or attract funders</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <h4>Capacity Building</h4>
+        <p>Workshops and tools to enhance organizational skills, leadership, and long-term sustainability.</p>
+        <div class="ideal-for">Ideal: rapid-growth orgs, leadership development needs</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🧭</div>
+        <h4>Strategic Planning & Feasibility</h4>
+        <p>Practical assessments and structured plans to support new initiatives, growth, and mission expansion.</p>
+        <div class="ideal-for">Ideal: leadership transitions, expiring plans, new ventures</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📜</div>
+        <h4>Grant Writing</h4>
+        <p>Professional support to secure funding and expand opportunities — from federal grants to foundation prospects.</p>
+        <div class="ideal-for">Ideal: small dev teams, scaling new programs</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h4>Program Design & Evaluation</h4>
+        <p>End-to-end design, implementation, and evaluation of impactful programs — built to deliver and measurable to funders.</p>
+        <div class="ideal-for">Ideal: anecdote-rich but data-poor orgs</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h4>Partnership & Coalition Building</h4>
+        <p>Building collaborative relationships among nonprofits, businesses, government, and academia. Rev. Woodberry's signature strength.</p>
+        <div class="ideal-for">Ideal: orgs needing leverage, regional/multi-state work</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <h4>Advocacy Campaigns</h4>
+        <p>Strategic campaigns to raise awareness, mobilize stakeholders, and drive policy or community change.</p>
+        <div class="ideal-for">Ideal: policy windows, justice work, mobilization moments</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎤</div>
+        <h4>Speaking Engagements</h4>
+        <p>Keynote addresses, workshops, and presentations to inspire, educate, and engage diverse audiences.</p>
+        <div class="ideal-for">Ideal: conferences, retreats, board summits, fundraisers</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="script-section">
+    <h3>How to Frame Any Service</h3>
+    <div class="script-card">
+      <span class="script-tag">FRAMEWORK</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "What that looks like in practice: <em>[2-sentence description of what we actually do]</em>. Most engagements like this run <em>[X to Y months]</em>, and the deliverables are <em>[3 concrete outputs]</em>. What makes Woodberry's approach different is that <em>[Rev. Woodberry built and ran New Alpha CDC for 30 years / our team includes former EPA leadership / we co-design rather than prescribe]</em> — so you're getting strategy from people who've actually run the kind of organization you're running."
+      </div>
+      <div class="script-coach">✦ The "we've actually done it" credibility is your moat. Lean on it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 4 — OBJECTIONS
+     ============================================================ -->
+<div class="panel" id="tab-objections">
+  <div class="panel-header">
+    <h2>🛑 Objection Navigation</h2>
+    <span class="panel-tagline">Most "no"s are really "not yet" or "not like this"</span>
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> Nonprofit objections are almost always rooted in <em>budget anxiety</em>, <em>past bad experiences with consultants</em>, or <em>internal politics</em>. Don't argue. Acknowledge → Reframe → Ask a question that moves forward.
+  </div>
+
+  <div id="objectionList">
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        💸 "We don't have any budget for consultants right now."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "I completely understand — and honestly, that's the most common thing we hear, especially this year. Two thoughts: first, a lot of our engagements are <em>funded by foundations through capacity-building grants</em>, so the org doesn't pay out of operating budget. Rev. Woodberry's relationships with funders like Ford Foundation, Kresge, and others go back decades, and we can often help orgs identify and apply for those dollars. Second, even if a full engagement isn't a fit, the <strong>one-hour introductory consultation</strong> is a much smaller commitment. <strong>Would it be worth a 30-minute call just to map out which option, if any, might fit?</strong>"
+        </div>
+        <div class="next-step"><strong>➡ Move to Close:</strong> "Would Tuesday or Thursday work better for that 30-minute call?"</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        🤝 "We're already working with another consultant."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "That's great to hear — really. The orgs that bring in outside expertise tend to outperform the ones that don't. Can I ask what they're helping you with? <em>[Listen.]</em> Got it. We tend to focus on <em>[adjacent area — coalition building, EJ-focused strategy, federal funding, etc.]</em>, so it might not be a duplicate at all. And frankly, if it is, I'd rather know now and stay out of your way. <strong>Would it be useful to compare notes — even just have Rev. Woodberry weigh in on your strategy as a second opinion?</strong>"
+        </div>
+        <div class="next-step"><strong>➡ Move to Close:</strong> Position Rev. Woodberry's experience as the second-opinion value-add.</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        🏛️ "I'd have to take this to my board."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "Absolutely — and you should. That's exactly the right process. Let me make that easier for you. <strong>What if I sent you a one-page summary plus Rev. Woodberry's bio</strong> you could share with the board chair, plus a short scoping call before any cost is on the table? That way when you bring it up, you've got concrete information instead of trying to translate a phone call. Who's the right board member or committee for me to make sure the materials speak to?"
+        </div>
+        <div class="next-step"><strong>➡ Move to Close:</strong> "Should I send the one-pager today, or time it with your next board meeting?"</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        ⏳ "We're stretched too thin to take on consulting right now."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "I hear that constantly — and I want to push back gently. The orgs that engage outside support during the stretched seasons usually come <em>out of</em> the stretch faster than the ones that white-knuckle through it. Some of our engagements are designed to <em>take work off your plate</em> — grant writing, program evaluation, and feasibility studies are good examples. <strong>Could I describe one or two of those quickly, just so you know what's available when the time is right?</strong>"
+        </div>
+        <div class="next-step"><strong>➡ Move to Services:</strong> Lead with grant writing or program evaluation — capacity-extending services.</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        😬 "We tried a consultant before and didn't get value."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "I really appreciate you being honest about that — and you're not alone. A lot of consulting in the nonprofit space gets sold as expertise but delivered as a generic template. I'd be curious what didn't work, if you're willing to share. <em>[Listen carefully.]</em> That tracks. Here's what I'd say is different about us: <strong>Rev. Woodberry built and ran New Alpha CDC for over 30 years before he was a consultant.</strong> He's not someone explaining your work to you from the outside — he's done your job. That changes the entire engagement. <strong>Would you be open to one conversation just to see if it feels different?</strong>"
+        </div>
+        <div class="next-step"><strong>➡ Move to Close:</strong> The "practitioner, not theorist" frame is your strongest comeback to past bad consulting experiences.</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        📧 "Can you just send me some information?"
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "Absolutely — happy to. To make sure I send the <em>right</em> information rather than a generic packet, can I ask just two quick things? <em>[Ask their #1 priority and decision timeline.]</em> Perfect. I'll put together a tailored summary, plus Rev. Woodberry's bio and a couple of relevant case studies, and email it within 24 hours. <strong>And as a follow-up — would it be okay if I called or emailed in about a week to see if anything raised questions?</strong> Otherwise these things tend to disappear into the inbox void."
+        </div>
+        <div class="next-step"><strong>➡ Capture the follow-up commitment</strong> before ending the call.</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        🤷 "We're a small org — we're probably not who you usually work with."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "I hear that a lot, and let me debunk it. Rev. Woodberry started New Alpha CDC as a small grassroots operation in Florence, SC — he's spent his career working <em>with</em> small organizations, not just for the big national ones. We work across the size spectrum, and frankly, some of our most rewarding engagements have been with frontline community organizations punching way above their weight. <strong>Want me to walk you through what a scaled engagement might look like for an org your size?</strong>"
+        </div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        🌐 "Is this connected to New Alpha? Are you a nonprofit or a business?"
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "Great question — and an important distinction. <strong>New Alpha CDC</strong> is the 501(c)(3) nonprofit Rev. Woodberry founded and runs in Florence, SC. <strong>Woodberry Strategic Solutions</strong> is a separate consulting firm where Rev. Woodberry, Dr. Mustafa Santiago Ali, Dr. Florence Anoruo, and Minister Malik Saafir provide professional consulting services. Two organizations, distinct missions — but New Alpha is essentially the proving ground for the strategies we bring to clients. We're not asking you to donate; we're a professional services firm. Does that clarify it?"
+        </div>
+        <div class="next-step"><strong>➡ Important:</strong> Some folks may be confused about whether this is a fundraising call. Always clarify when asked.</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        🚪 "Honestly, I'm just not interested."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "Totally fair, and I'll respect that — last thing we want is to be the call you dread. Can I ask one quick thing before I let you go? <strong>Is it that the timing is off, or is it more that what we do isn't relevant to where you are?</strong> I ask because if it's the second one, I'd rather take you off our outreach list and not bother you again."
+        </div>
+        <div class="next-step"><strong>➡ Either way, honor it.</strong> If they say "timing," ask when's better. If "not relevant," thank them and remove from list.</div>
+      </div>
+    </div>
+
+    <div class="objection">
+      <div class="objection-q" onclick="this.parentElement.classList.toggle('open')">
+        ⏰ "Call me back in a few months."
+      </div>
+      <div class="objection-a">
+        <div class="script-text">
+          "Happy to. So I'm not just guessing — <strong>what changes in a few months that makes this a better conversation?</strong> Is it the budget cycle, the board calendar, an end of fiscal year? That'll help me reach out at the right moment instead of randomly. Should we put a specific week on the calendar — say, the first week of <em>[month]</em>?"
+        </div>
+        <div class="next-step"><strong>➡ Schedule a real callback.</strong> Vague "in a few months" = lost lead. Specific date = warm pipeline.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="script-section">
+    <h3>Universal Bridge — Always End an Objection With a Question</h3>
+    <div class="script-card">
+      <span class="script-tag amber">⭐ THE GOLDEN RULE</span>
+      <div class="script-text">
+        Every objection response ends with a <strong>question that moves forward</strong>. Never end on a statement. Never accept a "we'll see" — convert it into a specific next step (a date, a follow-up commitment, a referral name). Whoever asks the next question controls the call.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 5 — CLOSE
+     ============================================================ -->
+<div class="panel" id="tab-close">
+  <div class="panel-header">
+    <h2>🔐 Close — Book the Introductory Consultation</h2>
+    <span class="panel-tagline">The ask is small: a one-hour intro consultation. That's it.</span>
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> On a network outreach call, you are not closing a six-month engagement. You are closing the <em>introductory consultation</em>. The bar for "yes" is just a one-hour scheduled call with the EDs / decision team. The intro consult is where the real selling happens — let it.
+  </div>
+
+  <div class="script-section">
+    <h3>The Soft Close — Book the Intro Consultation</h3>
+    <div class="script-card">
+      <span class="script-tag">ASK</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Based on what you just shared, I really do think there's something here worth exploring. Our <strong>introductory consultation</strong> is the easiest next step — it's one hour, no obligation, and you walk away with two or three concrete strategies you can act on regardless of whether we ever work together beyond that. <strong>Would you be open to scheduling that with Rev. Woodberry or one of our senior consultants?</strong>"
+      </div>
+      <div class="script-coach">✦ "Walk away with strategies regardless" reduces resistance dramatically. The intro consultation is value-first.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>The Two-Choice Close</h3>
+    <div class="script-card">
+      <span class="script-tag amber">YES/YES</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "I have openings <strong>Tuesday at 10</strong> or <strong>Thursday at 2</strong>. <strong>Which one works better for you?</strong> You can also book directly online at WoodberryStrategicSolutions.com if a different time works better."
+      </div>
+      <div class="script-coach">✦ Never ask "would you like to schedule something?" — that's a yes/no. Always offer two specific options.</div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">FOLLOW-UP</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Perfect. Should I include anyone else on your end — your board chair, development director, anyone you'd want in the room?"
+      </div>
+      <div class="script-coach">✦ Multi-stakeholder calls = much higher conversion. Always invite the decision-makers.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Light Close — When They're Hesitant on a Meeting</h3>
+    <div class="script-card">
+      <span class="script-tag sage">FALLBACK</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "No problem at all. Let me do this — I'll send you a one-page summary based on our conversation, plus Rev. Woodberry's bio and a couple of case studies of orgs in similar situations. <strong>Can I follow up in about 10 days to see if anything sparked questions?</strong>"
+      </div>
+      <div class="script-coach">✦ A one-pager + scheduled follow-up keeps the relationship alive without forcing a meeting.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Confirmation & Wrap</h3>
+    <div class="script-card">
+      <span class="script-tag">CONFIRM</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Excellent. So I've got us down for <strong>[Day at Time]</strong>. I'll send over a calendar invite from <em>Info@WoodberryStrategicSolutions.com</em> and a short pre-read so we don't waste any of your time. What's the best email for you? And anyone else who should be on that invite?"
+      </div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag sage">GRATITUDE CLOSE</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "<strong>[Contact Name]</strong>, I really appreciate you taking the time today — I know how full your plate is, and I don't take that for granted. Rev. Woodberry will be glad to hear we connected. Talk to you on <strong>[Day]</strong>."
+      </div>
+      <div class="script-coach">✦ "Rev. Woodberry will be glad we connected" is a beautiful close — it personalizes and reinforces the relationship anchor.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="script-section">
+    <h3>Quick Confirmation Text — Send Within 5 Minutes</h3>
+    <div class="script-card">
+      <span class="script-tag amber">📱 TEXT</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi [Contact Name] — great connecting just now. Calendar invite for [Day at Time] is on its way from Woodberry Strategic Solutions. Looking forward to going deeper on [their priority]. — [Your Name]"
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 6 — VOICEMAIL
+     ============================================================ -->
+<div class="panel" id="tab-voicemail">
+  <div class="panel-header">
+    <h2>📱 Voicemail Scripts</h2>
+    <span class="panel-tagline">Short, warm, network-grounded — Rev. Woodberry's name does the work</span>
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> Most people don't return voicemails. Yours has 15 seconds to do <em>two</em> things: make them feel like this isn't a sales call, and give them one specific reason to call back. Rev. Woodberry's name in the first sentence is your hook — use it.
+  </div>
+
+  <div class="script-section">
+    <h3>First Voicemail — Network Reconnection</h3>
+    <div class="script-card">
+      <span class="script-tag">VOICEMAIL #1 — 15 SEC</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi <strong>[Contact Name]</strong>, this is <strong>[Your Name]</strong> calling on behalf of <strong>Rev. Leo Woodberry</strong> at <strong>Woodberry Strategic Solutions</strong>. Rev. Woodberry asked me to reach out — <strong>[Org Name]</strong> has been part of his network and I wanted to share a couple of resources I think might be useful for you this year. Nothing urgent — give me a call back when you've got a minute at <strong>(202) 809-9904</strong>. Again, that's <strong>[Your Name]</strong> at <strong>(202) 809-9904</strong>. Thanks."
+      </div>
+      <div class="script-coach">✦ "Rev. Woodberry asked me to reach out" is the most powerful first sentence you have. It positions this as a personal favor, not a sales push.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Second Voicemail — Specific Hook</h3>
+    <div class="script-card">
+      <span class="script-tag amber">VOICEMAIL #2 — IF NO CALLBACK</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi <strong>[Contact Name]</strong>, <strong>[Your Name]</strong> at Woodberry Strategic Solutions following up. I know you're swamped, so let me give you a real reason to call back: we've put together <em>[a free assessment / a peer cohort / a relevant case study from New Alpha's 30 years of work]</em> that I'd like to share with <strong>[Org Name]</strong>. Easiest is to text or call back at <strong>(202) 809-9904</strong>, or email <strong>Info@WoodberryStrategicSolutions.com</strong>. Thanks."
+      </div>
+      <div class="script-coach">✦ Specific resource > vague invitation. Multiple channels (call, text, email) lower the friction to respond.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Third Voicemail — Close the Loop</h3>
+    <div class="script-card">
+      <span class="script-tag sage">VOICEMAIL #3 — FINAL</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi <strong>[Contact Name]</strong>, <strong>[Your Name]</strong> with Woodberry Strategic Solutions — last call from me for now, I promise. I don't want to be a pest. If now isn't the right time, totally understood — feel free to reach back out whenever it is. <strong>(202) 809-9904</strong> if you ever need anything. Wishing you all the best at <strong>[Org Name]</strong>."
+      </div>
+      <div class="script-coach">✦ The "permission to disengage" voicemail counterintuitively often gets the callback.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="script-section">
+    <h3>📲 Voicemail-to-Text Sequence</h3>
+    <div class="script-card">
+      <span class="script-tag">📱 TEXT — 4-6 hrs after VM</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi [Contact Name] — [Your Name] from Woodberry Strategic Solutions, calling on behalf of Rev. Leo Woodberry. Just left you a voicemail. Want to make this easy: feel free to text or email back whenever works. No rush, no pitch — just wanted to reconnect. Thanks!"
+      </div>
+    </div>
+
+    <div class="script-card">
+      <span class="script-tag amber">📧 EMAIL — Same day</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        <strong>Subject:</strong> Reconnecting from Rev. Woodberry's office<br><br>
+        Hi [Contact Name],<br><br>
+        I left a voicemail earlier today and figured email might be easier. I'm reaching out on behalf of <strong>Rev. Leo Woodberry</strong> at <strong>Woodberry Strategic Solutions</strong>. [Org Name] has been part of Rev. Woodberry's network, and he asked me to personally let you know about a few new resources we've launched this year that might be relevant for you.<br><br>
+        Whenever you've got 15 minutes, I'd love to reconnect. No agenda — just a check-in.<br><br>
+        Best,<br>
+        [Your Name]<br>
+        Woodberry Strategic Solutions Global Consulting<br>
+        (202) 809-9904<br>
+        Info@WoodberryStrategicSolutions.com
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="script-section">
+    <h3>Voicemail Best Practices</h3>
+    <div class="checklist">
+      <div class="checklist-item"><input type="checkbox"><label>Lead with "Rev. Leo Woodberry" by name in first sentence</label></div>
+      <div class="checklist-item"><input type="checkbox"><label>Keep under 20 seconds — 15 is better</label></div>
+      <div class="checklist-item"><input type="checkbox"><label>Say (202) 809-9904 twice, slowly</label></div>
+      <div class="checklist-item"><input type="checkbox"><label>Best times: Tues-Thurs, 9-11am or 2-4pm local</label></div>
+      <div class="checklist-item"><input type="checkbox"><label>Avoid Mondays before 11 and Fridays after 2</label></div>
+      <div class="checklist-item"><input type="checkbox"><label>Send follow-up text 4-6 hrs later, email same day</label></div>
+      <div class="checklist-item"><input type="checkbox"><label>Max 3 voicemails before pausing — switch to email-only</label></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 7 — FOLLOW-UP
+     ============================================================ -->
+<div class="panel" id="tab-followup">
+  <div class="panel-header">
+    <h2>🔄 Follow-Up Sequences</h2>
+    <span class="panel-tagline">Most yeses come on touches 3-7. Stay warm, stay relevant.</span>
+  </div>
+
+  <div class="mindset">
+    <strong>💡 Mindset:</strong> A network outreach call rarely closes on the first contact — and it shouldn't. Your job after the call is to <em>stay top of mind</em> without feeling like you're hounding them. Different angle every touch.
+  </div>
+
+  <div class="script-section">
+    <h3>📧 Post-Call Email — Same Day</h3>
+    <div class="script-card">
+      <span class="script-tag">EMAIL — RECAP</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        <strong>Subject:</strong> Following up on our conversation today<br><br>
+        Hi [Contact Name],<br><br>
+        Really appreciated the conversation earlier — thanks for the time. As promised, here's a quick recap of what stood out:<br><br>
+        • <em>[Top challenge they mentioned]</em><br>
+        • <em>[The strategic priority they care most about]</em><br>
+        • <em>[Anything else specific they shared]</em><br><br>
+        Based on that, I think the place where Woodberry Strategic Solutions could be most useful for [Org Name] is around <em>[recommended service area]</em>. I've attached a one-page overview, Rev. Woodberry's bio, and two case studies of similar orgs we've supported.<br><br>
+        Whenever it makes sense for you, I'd love to set up that introductory consultation we discussed. You can also book directly online at <em>WoodberryStrategicSolutions.com/book-online</em>.<br><br>
+        Best,<br>
+        [Your Name]<br>
+        Woodberry Strategic Solutions<br>
+        (202) 809-9904 · Info@WoodberryStrategicSolutions.com
+      </div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>5-Touch Follow-Up Cadence</h3>
+    <div style="background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem;">
+      <table style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+        <thead>
+          <tr style="background: var(--linen);">
+            <th style="text-align: left; padding: 0.6rem; border-bottom: 1px solid var(--rule);">Touch</th>
+            <th style="text-align: left; padding: 0.6rem; border-bottom: 1px solid var(--rule);">When</th>
+            <th style="text-align: left; padding: 0.6rem; border-bottom: 1px solid var(--rule);">Channel</th>
+            <th style="text-align: left; padding: 0.6rem; border-bottom: 1px solid var(--rule);">Angle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">1</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Same day</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Email</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Recap + 1-pager + Rev. Woodberry's bio + case studies</td></tr>
+          <tr><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">2</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Day 5-7</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Email or text</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Send a relevant article / resource (no ask)</td></tr>
+          <tr><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">3</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Day 14</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Phone</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Quick check-in: "Anything land for you?"</td></tr>
+          <tr><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">4</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Day 30</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">Email</td><td style="padding: 0.55rem; border-bottom: 1px dashed var(--rule);">New angle — workshop invite, free assessment, EJ Today article</td></tr>
+          <tr><td style="padding: 0.55rem;">5</td><td style="padding: 0.55rem;">Day 60-90</td><td style="padding: 0.55rem;">Phone</td><td style="padding: 0.55rem;">Final check-in: "Has anything shifted?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Touch #2 — Value-Add Email (No Ask)</h3>
+    <div class="script-card">
+      <span class="script-tag sage">EMAIL — DAY 5-7</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        <strong>Subject:</strong> Thought of you when I saw this<br><br>
+        Hi [Contact Name],<br><br>
+        Saw this and thought of our conversation — <em>[link to a recent funder report, EJ Today article, sector trend piece, or a recent piece by Rev. Woodberry on Common Dreams or Truthout]</em>. Worth a quick read.<br><br>
+        No need to reply — just sharing because it's relevant.<br><br>
+        — [Your Name]
+      </div>
+      <div class="script-coach">✦ Rev. Woodberry's published writing on Common Dreams, Truthout, and Sierra Club is a perfect "thought of you" share. It's pure value, no ask.</div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Touch #3 — Light-Touch Phone Check-In</h3>
+    <div class="script-card">
+      <span class="script-tag amber">CALL — DAY 14</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        "Hi [Contact Name] — [Your Name] at Woodberry Strategic Solutions. Wanted to circle back from a couple weeks ago. <strong>Did anything in the materials I sent spark any thoughts</strong>, or is now still not the right moment? Either's fine — just wanted to check in real quick."
+      </div>
+    </div>
+  </div>
+
+  <div class="script-section">
+    <h3>Touch #4 — Re-Engagement With New Angle</h3>
+    <div class="script-card">
+      <span class="script-tag">EMAIL — DAY 30</span>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">
+        <strong>Subject:</strong> A quick offer — and then I'll stop emailing<br><br>
+        Hi [Contact Name],<br><br>
+        I know I've been popping up in your inbox — last one for a while, I promise.<br><br>
+        We're running <em>[a free assessment / a peer cohort with Rev. Woodberry / a half-day workshop / a webinar with Dr. Mustafa Santiago Ali on EJ funding]</em> next month, and I think [Org Name] would be a great fit. No cost, no commitment beyond showing up.<br><br>
+        If interested, just reply with a "yes" and I'll send the details. If not, no worries — I'll go quiet and you can reach out whenever the time is right.<br><br>
+        Either way, rooting for you.<br><br>
+        — [Your Name]
+      </div>
+      <div class="script-coach">✦ "Last one for a while" + free offer + permission to opt out = surprisingly high response rate.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PANEL 8 — NOTES
+     ============================================================ -->
+<div class="panel" id="tab-notes">
+  <div class="panel-header">
+    <h2>📝 Call Outcome & Notes</h2>
+    <span class="panel-tagline">Log every call. Future-you will thank you.</span>
+  </div>
+
+  <h4>Outcome</h4>
+  <div class="outcome-row" id="outcomePills">
+    <div class="outcome-pill" onclick="selectOutcome(this)">📅 Intro Consult Booked</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">📧 Send Info</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">🔄 Callback Scheduled</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">📱 Left Voicemail</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">🔇 No Answer</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">❌ Not Interested</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">🤝 Referred Elsewhere</div>
+    <div class="outcome-pill" onclick="selectOutcome(this)">🚫 Remove from List</div>
+  </div>
+
+  <h4 style="margin-top: 1rem;">Schedule Callback (Optional)</h4>
+  <div class="callback-row">
+    <input type="date" id="cbDate">
+    <input type="time" id="cbTime">
+    <input type="text" id="cbNote" placeholder="Reminder note">
+  </div>
+  <button class="btn btn-outline btn-sm" onclick="saveCallback()">💾 Save Callback</button>
+
+  <h4 style="margin-top: 1.25rem;">Call Notes</h4>
+  <textarea class="notes-input" id="callNotes" placeholder="What did they share? Top priority? Decision-makers? Connection to Rev. Woodberry's network? Next steps?"></textarea>
+
+  <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <button class="btn btn-primary" onclick="saveCallLog()">💾 Save & Log Call</button>
+    <button class="btn btn-outline btn-sm" onclick="clearNotes()">🔄 Clear</button>
+    <button class="btn btn-outline btn-sm" onclick="exportSession()">📊 Export Session CSV</button>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h4>📋 Today's Call Log</h4>
+  <div id="callLogList" style="background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; padding: 0.75rem; min-height: 80px; font-size: 0.85rem;">
+    <em style="color: var(--ink-soft);">No calls logged yet today.</em>
+  </div>
+</div>
+
+</div> <!-- /content-area -->
+
+<!-- ========== SIDEBAR ========== -->
+<aside class="sidebar">
+
+  <div class="side-card">
+    <h4>📊 Session Tracker</h4>
+    <div class="session-stats">
+      <div class="stat-tile"><div class="stat-num" id="statCalls">0</div><div class="stat-label">Calls</div></div>
+      <div class="stat-tile"><div class="stat-num" id="statBooked">0</div><div class="stat-label">Booked</div></div>
+      <div class="stat-tile"><div class="stat-num" id="statCallbacks">0</div><div class="stat-label">Callbacks</div></div>
+    </div>
+  </div>
+
+  <div class="side-card">
+    <h4>📅 Last Touch Age</h4>
+    <div class="lead-age-meter">
+      <div class="lead-age-num" id="leadAgeNum">—</div>
+      <div class="lead-age-label">days since last contact</div>
+      <div class="lead-age-guidance" id="leadAgeGuidance">Enter last touch date above to see guidance.</div>
+    </div>
+  </div>
+
+  <div class="side-card">
+    <h4>⚡ Quick Jump</h4>
+    <div class="quick-jump">
+      <button class="qj-btn" onclick="showTab(document.querySelectorAll('.tab-btn')[0], 'tab-opening')">Opening</button>
+      <button class="qj-btn" onclick="showTab(document.querySelectorAll('.tab-btn')[1], 'tab-discovery')">Discovery</button>
+      <button class="qj-btn" onclick="showTab(document.querySelectorAll('.tab-btn')[2], 'tab-services')">Services</button>
+      <button class="qj-btn" onclick="showTab(document.querySelectorAll('.tab-btn')[3], 'tab-objections')">Objections</button>
+      <button class="qj-btn" onclick="showTab(document.querySelectorAll('.tab-btn')[4], 'tab-close')">Close</button>
+      <button class="qj-btn" onclick="showTab(document.querySelectorAll('.tab-btn')[7], 'tab-notes')">Notes</button>
+    </div>
+  </div>
+
+  <div class="side-card">
+    <h4>🌿 About Rev. Leo Woodberry</h4>
+    <ul class="cred-list">
+      <li><strong>Pastor</strong>, Kingdom Living Temple</li>
+      <li><strong>Executive Director</strong>, New Alpha CDC (Florence, SC) — 30+ years</li>
+      <li><strong>President Biden's Lifetime Achievement Award</strong></li>
+      <li>Two <strong>Vice Presidential AT&T Corporate Awards</strong></li>
+      <li>Recognized by SC State Senate, NY State Assembly, NY City Council</li>
+      <li>Lead organizer, <strong>10-state Justice First Tour</strong></li>
+      <li>Advisor, Sierra Club's <strong>Ready for 100 Campaign</strong></li>
+      <li>Member, <strong>EPA National Environmental Justice Advisory Council</strong></li>
+      <li>Founding member, <strong>African American EJ Action Network</strong> (1994)</li>
+      <li>Contributed to environmental statement in <strong>UN Declaration of Human Rights</strong> (2001) — signed by 161 countries</li>
+      <li>Boards: 7 national + 1 regional organizations</li>
+      <li>Author, <em>Wind Song</em>; editor, <em>EJ Today</em>; host, <em>Leo & Larry Show</em></li>
+    </ul>
+  </div>
+
+  <div class="side-card">
+    <h4>👥 The Consulting Team</h4>
+    <div style="font-size: 0.83rem; line-height: 1.5;">
+      <p><strong style="color: var(--forest);">Rev. Leo Woodberry</strong> — Founder, Strategic Planning Lead</p>
+      <p style="margin-top: 0.4rem;"><strong style="color: var(--forest);">Dr. Mustafa Santiago Ali</strong> — Former EPA Office of Environmental Justice; VP, NWF; Founder, Revitalization Strategies</p>
+      <p style="margin-top: 0.4rem;"><strong style="color: var(--forest);">Dr. Florence Anoruo</strong> — SC State University; Brookhaven National Lab Visiting Scientist; $3M+ in funded research</p>
+      <p style="margin-top: 0.4rem;"><strong style="color: var(--forest);">Min. I. Malik Saafir</strong> — M.Div. Vanderbilt; 25+ years EJ work; Little Rock Sustainability Commission</p>
+    </div>
+  </div>
+
+  <div class="side-card">
+    <h4>💬 Power Phrases</h4>
+    <div class="power-quote">"Rev. Woodberry asked me to reach out personally."</div>
+    <div class="power-quote">"He's not someone explaining your work to you from the outside — he's done your job."</div>
+    <div class="power-quote">"I'd rather know now and stay out of your way."</div>
+    <div class="power-quote">"What's the thing that, if it goes well, makes everything else easier?"</div>
+    <div class="power-quote">"You walk away with strategies regardless of whether we work together."</div>
+  </div>
+
+  <div class="side-card">
+    <h4>📞 Firm Quick Reference</h4>
+    <div style="font-size: 0.85rem; line-height: 1.7;">
+      <strong style="color: var(--forest);">Woodberry Strategic Solutions</strong><br>
+      Global Consulting, Inc.<br>
+      <strong>Phone:</strong> (202) 809-9904<br>
+      <strong>Email:</strong> Info@WoodberryStrategicSolutions.com<br>
+      <strong>Web:</strong> WoodberryStrategicSolutions.com<br>
+      <strong>Offices:</strong> NY · DC · VA · SC
+    </div>
+  </div>
+
+</aside>
+
+</div> <!-- /main-grid -->
+
+<!-- ========== CALLBACK MODAL ========== -->
+<div class="modal-bg" id="callbackModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📅 Scheduled Callbacks</h2>
+      <button class="modal-close" onclick="closeModal('callbackModal')">✕</button>
+    </div>
+    <div id="callbackList">
+      <em style="color: var(--ink-soft);">No callbacks scheduled. Use the Notes tab to add one.</em>
+    </div>
+  </div>
+</div>
+
+<!-- ========== IMPORT MODAL ========== -->
+<div class="modal-bg" id="importModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>📂 Import Org List</h2>
+      <button class="modal-close" onclick="closeModal('importModal')">✕</button>
+    </div>
+    <p style="margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--ink-soft);">
+      Paste CSV data below. Required columns: <strong>Organization, Contact, Phone</strong>. Optional: <strong>LastTouch, Email, Notes, NetworkConnection</strong>.
+    </p>
+    <textarea class="notes-input" id="importData" placeholder="Organization,Contact,Phone,LastTouch,Email,NetworkConnection
+Pee Dee Land Trust,Jane Doe,(555) 555-1234,2025-09-15,jane@pdlt.org,Justice First Tour 2024
+..."></textarea>
+    <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+      <button class="btn btn-primary" onclick="parseImport()">📥 Parse & Load</button>
+      <button class="btn btn-outline btn-sm" onclick="closeModal('importModal')">Cancel</button>
+    </div>
+    <div id="importPreview" style="margin-top: 1rem;"></div>
+  </div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let timerSec = 0, timerRunning = false, timerInterval = null;
+let session = { calls: 0, booked: 0, callbacks: 0, log: [] };
+let callbacks = [];
+let leadQueue = [];
+let currentLeadIdx = 0;
+let selectedOutcome = null;
+let callType = 'outbound';
+
+// ============================================================
+// TIMER
+// ============================================================
+function toggleTimer() {
+  const btn = document.getElementById('timerBtn');
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    btn.textContent = 'Resume';
+    timerRunning = false;
+  } else {
+    timerInterval = setInterval(() => { timerSec++; updateTimerDisplay(); }, 1000);
+    btn.textContent = 'Pause';
+    timerRunning = true;
+  }
+}
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerSec = 0;
+  timerRunning = false;
+  updateTimerDisplay();
+  document.getElementById('timerBtn').textContent = 'Start';
+}
+function updateTimerDisplay() {
+  const m = Math.floor(timerSec / 60);
+  const s = timerSec % 60;
+  document.getElementById('timerDisplay').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function showTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// CALL TYPE
+// ============================================================
+function setCallType(btn, type) {
+  document.querySelectorAll('.call-type-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  callType = type;
+}
+
+// ============================================================
+// COPY
+// ============================================================
+function copyScript(btn) {
+  const card = btn.closest('.script-card');
+  const text = card.querySelector('.script-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+    showToast('Script copied to clipboard');
+  });
+}
+
+// ============================================================
+// DIAL
+// ============================================================
+function dialLead() {
+  const phone = document.getElementById('contactPhone').value.trim();
+  if (!phone) { showToast('Enter a phone number first'); return; }
+  if (!timerRunning) toggleTimer();
+  window.location.href = `tel:${phone.replace(/[^\d+]/g, '')}`;
+  showToast(`Dialing ${phone}…`);
+}
+
+// ============================================================
+// OUTCOME
+// ============================================================
+function selectOutcome(pill) {
+  document.querySelectorAll('.outcome-pill').forEach(p => p.classList.remove('selected'));
+  pill.classList.add('selected');
+  selectedOutcome = pill.textContent.trim();
+}
+
+// ============================================================
+// CALL LOG
+// ============================================================
+function saveCallLog() {
+  const org = document.getElementById('orgName').value.trim();
+  const contact = document.getElementById('contactName').value.trim();
+  const phone = document.getElementById('contactPhone').value.trim();
+  const notes = document.getElementById('callNotes').value.trim();
+
+  if (!org && !contact && !phone) { showToast('Add at least an org or contact name'); return; }
+
+  const entry = {
+    timestamp: new Date().toLocaleString(),
+    org, contact, phone,
+    type: callType,
+    duration: document.getElementById('timerDisplay').textContent,
+    outcome: selectedOutcome || 'No outcome set',
+    notes
+  };
+  session.log.push(entry);
+  session.calls++;
+  if (selectedOutcome && selectedOutcome.includes('Booked')) session.booked++;
+  if (selectedOutcome && selectedOutcome.includes('Callback')) session.callbacks++;
+  updateStats();
+  renderCallLog();
+  showToast('Call logged ✓');
+  navigator.clipboard.writeText(`${entry.org} | ${entry.contact} | ${entry.outcome} | ${entry.notes}`);
+}
+
+function clearNotes() {
+  document.getElementById('callNotes').value = '';
+  document.querySelectorAll('.outcome-pill').forEach(p => p.classList.remove('selected'));
+  selectedOutcome = null;
+  resetTimer();
+}
+
+function renderCallLog() {
+  const list = document.getElementById('callLogList');
+  if (!session.log.length) {
+    list.innerHTML = '<em style="color: var(--ink-soft);">No calls logged yet today.</em>';
+    return;
+  }
+  list.innerHTML = session.log.slice().reverse().map(e =>
+    `<div style="padding: 0.5rem 0; border-bottom: 1px dashed var(--rule);">
+      <strong>${e.org || '(no org)'}</strong> — ${e.contact || ''}<br>
+      <span style="font-size: 0.78rem; color: var(--ink-soft);">${e.timestamp} • ${e.duration} • ${e.outcome}</span>
+    </div>`
+  ).join('');
+}
+
+function updateStats() {
+  document.getElementById('statCalls').textContent = session.calls;
+  document.getElementById('statBooked').textContent = session.booked;
+  document.getElementById('statCallbacks').textContent = session.callbacks;
+}
+
+// ============================================================
+// CALLBACKS
+// ============================================================
+function saveCallback() {
+  const date = document.getElementById('cbDate').value;
+  const time = document.getElementById('cbTime').value;
+  const note = document.getElementById('cbNote').value;
+  const org = document.getElementById('orgName').value;
+  const contact = document.getElementById('contactName').value;
+  const phone = document.getElementById('contactPhone').value;
+  if (!date || !time) { showToast('Pick a date and time'); return; }
+  callbacks.push({ date, time, note, org, contact, phone });
+  document.getElementById('callbackCount').textContent = callbacks.length;
+  showToast('Callback saved ✓');
+  document.getElementById('cbDate').value = '';
+  document.getElementById('cbTime').value = '';
+  document.getElementById('cbNote').value = '';
+}
+
+function renderCallbacks() {
+  const list = document.getElementById('callbackList');
+  if (!callbacks.length) {
+    list.innerHTML = '<em style="color: var(--ink-soft);">No callbacks scheduled.</em>';
+    return;
+  }
+  callbacks.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+  list.innerHTML = callbacks.map((c, i) =>
+    `<div style="padding: 0.65rem; background: var(--paper); border-radius: 6px; margin-bottom: 0.4rem;">
+      <strong>${c.date} ${c.time}</strong> — ${c.org || c.contact}<br>
+      <span style="font-size: 0.82rem; color: var(--ink-soft);">${c.phone || ''} ${c.note ? '• ' + c.note : ''}</span>
+    </div>`
+  ).join('');
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function exportSession() {
+  if (!session.log.length) { showToast('No calls logged yet'); return; }
+  let csv = 'Timestamp,Organization,Contact,Phone,Type,Duration,Outcome,Notes\n';
+  session.log.forEach(e => {
+    csv += `"${e.timestamp}","${e.org}","${e.contact}","${e.phone}","${e.type}","${e.duration}","${e.outcome}","${(e.notes||'').replace(/"/g,'""')}"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `woodberry-session-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Session exported ✓');
+}
+
+// ============================================================
+// IMPORT
+// ============================================================
+function parseImport() {
+  const raw = document.getElementById('importData').value.trim();
+  if (!raw) { showToast('Paste CSV data first'); return; }
+  const lines = raw.split('\n').filter(l => l.trim());
+  if (lines.length < 2) { showToast('Need at least a header row + one data row'); return; }
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+  leadQueue = lines.slice(1).map(line => {
+    const vals = line.split(',').map(v => v.trim());
+    const row = {};
+    headers.forEach((h, i) => row[h] = vals[i] || '');
+    return row;
+  });
+  document.getElementById('leadCounter').textContent = `${leadQueue.length} orgs in queue`;
+  renderImportPreview();
+}
+
+function renderImportPreview() {
+  const div = document.getElementById('importPreview');
+  if (!leadQueue.length) { div.innerHTML = ''; return; }
+  div.innerHTML = `<h4>${leadQueue.length} orgs ready</h4>` +
+    leadQueue.slice(0, 10).map((row, i) =>
+      `<div style="padding: 0.45rem 0.6rem; background: var(--cream); border-radius: 6px; margin-bottom: 0.3rem; cursor: pointer; font-size: 0.85rem;" onclick="loadLead(${i})">
+        <strong>${row.organization || row.org || '(no org)'}</strong> — ${row.contact || ''} • ${row.phone || ''}
+      </div>`
+    ).join('') +
+    (leadQueue.length > 10 ? `<em style="color: var(--ink-soft); font-size: 0.8rem;">+ ${leadQueue.length - 10} more</em>` : '');
+}
+
+function loadLead(idx) {
+  const lead = leadQueue[idx];
+  document.getElementById('orgName').value = lead.organization || lead.org || '';
+  document.getElementById('contactName').value = lead.contact || '';
+  document.getElementById('contactPhone').value = lead.phone || '';
+  document.getElementById('lastTouch').value = lead.lasttouch || '';
+  currentLeadIdx = idx;
+  closeModal('importModal');
+  showToast(`Loaded: ${lead.organization || lead.contact}`);
+  updateLeadAge();
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  if (id === 'callbackModal') renderCallbacks();
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-bg').forEach(bg => {
+  bg.addEventListener('click', e => { if (e.target === bg) bg.classList.remove('open'); });
+});
+
+// ============================================================
+// LEAD AGE
+// ============================================================
+function updateLeadAge() {
+  const lt = document.getElementById('lastTouch').value;
+  const numEl = document.getElementById('leadAgeNum');
+  const guideEl = document.getElementById('leadAgeGuidance');
+  if (!lt) { numEl.textContent = '—'; guideEl.textContent = 'Enter last touch date above to see guidance.'; return; }
+  const days = Math.floor((new Date() - new Date(lt)) / 86400000);
+  numEl.textContent = days;
+  if (days < 30) guideEl.textContent = '🌱 Recent — warm reconnect, no urgency needed.';
+  else if (days < 90) guideEl.textContent = '☀️ Lukewarm — re-anchor in shared context, ask what\'s changed.';
+  else if (days < 180) guideEl.textContent = '🍂 Cooling — open with a specific reason for reconnecting.';
+  else guideEl.textContent = '❄️ Cold — treat almost as new outreach. Lead with humility about the gap.';
+}
+
+document.getElementById('lastTouch').addEventListener('change', updateLeadAge);
+
+// ============================================================
+// DISCOVERY PROGRESS
+// ============================================================
+function updateDiscoveryProgress() {
+  const total = document.querySelectorAll('#tab-discovery .checklist-item input').length;
+  const done = document.querySelectorAll('#tab-discovery .checklist-item input:checked').length;
+  document.getElementById('discoveryProgress').textContent = `${done} / ${total} covered`;
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  const tabs = document.querySelectorAll('.tab-btn');
+  const map = { '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5, '7': 6, '8': 7 };
+  if (map[e.key] !== undefined) {
+    const ids = ['tab-opening','tab-discovery','tab-services','tab-objections','tab-close','tab-voicemail','tab-followup','tab-notes'];
+    showTab(tabs[map[e.key]], ids[map[e.key]]);
+  }
+  if (e.key === ' ') { e.preventDefault(); toggleTimer(); }
+  if (e.key === 'r' || e.key === 'R') resetTimer();
+  if (e.key === 's' || e.key === 'S') saveCallLog();
+  if (e.key === 'Escape') document.querySelectorAll('.modal-bg.open').forEach(m => m.classList.remove('open'));
+});
+
+// Initialize
+updateTimerDisplay();
+</script>
+
+</body>
+</html>
